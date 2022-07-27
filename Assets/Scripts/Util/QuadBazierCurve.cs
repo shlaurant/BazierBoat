@@ -1,29 +1,40 @@
-﻿using Unity.Mathematics;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using Unity.Mathematics;
 
 namespace Util
 {
     public class QuadBazierCurve : IBazierCurve
     {
-        private readonly Vector2 a;
-        private readonly Vector2 b;
-        private readonly Vector2 c;
+        private readonly Point a;
+        private readonly Point b;
+        private readonly Point c;
 
-        public QuadBazierCurve(Vector2 a, Vector2 b, Vector2 c)
+        public QuadBazierCurve(Point a, Point b, Point c)
         {
             this.a = a;
             this.b = b;
             this.c = c;
         }
 
-        public Vector2 Point(float t)
+        public Point Point(float t)
         {
-            var ax = math.lerp(a.x, c.x, t);
-            var ay = math.lerp(a.y, c.y, t);
-            var bx = math.lerp(c.x, b.x, t);
-            var by = math.lerp(c.y, b.y, t);
+            var ax = math.lerp(a.X, c.X, t);
+            var ay = math.lerp(a.Y, c.Y, t);
+            var bx = math.lerp(c.X, b.X, t);
+            var by = math.lerp(c.Y, b.Y, t);
 
-            return new Vector2(math.lerp(ax, bx, t), math.lerp(ay, by, t));
+            return new Point(math.lerp(ax, bx, t), math.lerp(ay, by, t));
+        }
+
+        public IList<Point> BasePoints()
+        {
+            var ret = new List<Point>(3)
+            {
+                a,
+                b,
+                c
+            };
+            return ret;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace Util
 {
@@ -9,6 +9,8 @@ namespace Util
         /// </summary>
         /// <param name="t">[0,1]</param>
         /// <returns>Point for parameter t</returns>
-        Vector2 Point(float t);
+        Point Point(float t);
+
+        IList<Point> BasePoints();
     }
 }
