@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Util
+namespace Math2D
 {
     public interface IBazierCurve
     {

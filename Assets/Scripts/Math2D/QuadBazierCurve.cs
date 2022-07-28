@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Unity.Mathematics;
 
-namespace Util
+namespace Math2D
 {
     public class QuadBazierCurve : IBazierCurve
     {
