@@ -20,5 +20,10 @@
         {
             return X * X + Y * Y;
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
+        }
     }
 }

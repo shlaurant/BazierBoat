@@ -34,5 +34,10 @@ namespace Math2D
                 return new Point(S.X + D.X * x, S.Y + D.Y * x);
             }
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(S)}: {S}, {nameof(D)}: {D}";
+        }
     }
 }

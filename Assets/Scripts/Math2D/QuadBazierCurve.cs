@@ -36,5 +36,10 @@ namespace Math2D
             };
             return ret;
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(a)}: {a}, {nameof(b)}: {b}, {nameof(c)}: {c}";
+        }
     }
 }
