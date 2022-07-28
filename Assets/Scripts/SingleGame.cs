@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
-using Util;
+using Math2D;
 using Random = UnityEngine.Random;
 
 public class SingleGame : MonoBehaviour
@@ -10,17 +11,22 @@ public class SingleGame : MonoBehaviour
     private readonly Vector2 initPos = Vector2.zero;
     private readonly Vector2 initDir = Vector2.up;
 
+    [SerializeField] private MapRenderer mapRenderer;
+
     [SerializeField] private int maxCurve;
     [SerializeField] private float minLength;
     [SerializeField] private float maxLength;
     [SerializeField] private float maxSide;
-    [SerializeField] private float renderInterval;
 
     private IList<IBazierCurve> curves = new List<IBazierCurve>();
 
     private void Awake()
     {
         GenerateCurves();
+    }
+
+    private void Start()
+    {
         foreach (var curve in curves)
         {
             Render(curve);
@@ -52,7 +58,7 @@ public class SingleGame : MonoBehaviour
 
     private void Render(IBazierCurve curve)
     {
-        //TODO: impl this
+        mapRenderer.RenderCurve(curve);
     }
 
     private IBazierCurve CreateRandomCurve(Vector2 s, Vector2 dir)
