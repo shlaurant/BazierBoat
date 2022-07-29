@@ -16,22 +16,8 @@ public class RiverSection : MonoBehaviour
     [SerializeField] private int edgeCount;
     [SerializeField] private float force;
 
-    [SerializeField] private bool doInit;
-    [SerializeField] private Vector2 sl;
-    [SerializeField] private Vector2 sr;
-    [SerializeField] private Vector2 el;
-    [SerializeField] private Vector2 er;
-
     private IBazierCurve left;
     private IBazierCurve right;
-
-    private void Start()
-    {
-        if (doInit)
-        {
-            GenerateCurve(sl, sr, el, er);
-        }
-    }
 
     public void GenerateCurve(Vector2 sl, Vector2 sr, Vector2 el, Vector2 er)
     {

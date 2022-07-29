@@ -368,6 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 384899320}
   - component: {fileID: 384899319}
+  - component: {fileID: 384899321}
   m_Layer: 0
   m_Name: RiverSection
   m_TagString: Untagged
@@ -392,11 +393,7 @@ MonoBehaviour:
   rightCol: {fileID: 169724781}
   rightRenderer: {fileID: 169724782}
   edgeCount: 10
-  doInit: 1
-  sl: {x: 0, y: 0}
-  sr: {x: 1, y: 1}
-  el: {x: 0, y: 6}
-  er: {x: 1, y: 5}
+  force: 0
 --- !u!4 &384899320
 Transform:
   m_ObjectHideFlags: 0
@@ -413,6 +410,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &384899321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384899318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c96a36292042f990188621fa205f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rs: {fileID: 384899319}
+  sl: {x: 0, y: 0}
+  sr: {x: 1, y: 2}
+  el: {x: 0, y: 6}
+  er: {x: 1, y: 4}
 --- !u!1 &615712972
 GameObject:
   m_ObjectHideFlags: 0
