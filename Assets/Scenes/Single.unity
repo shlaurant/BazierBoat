@@ -394,9 +394,9 @@ MonoBehaviour:
   edgeCount: 10
   doInit: 1
   sl: {x: 0, y: 0}
-  sr: {x: 2, y: 1}
-  el: {x: 2, y: 6}
-  er: {x: 4, y: 4}
+  sr: {x: 1, y: 1}
+  el: {x: 0, y: 6}
+  er: {x: 1, y: 5}
 --- !u!4 &384899320
 Transform:
   m_ObjectHideFlags: 0
