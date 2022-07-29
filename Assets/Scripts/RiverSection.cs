@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class RiverSection : MonoBehaviour
 {
-    [SerializeField] private EdgeCollider2D ecl;
-    [SerializeField] private LineRenderer lrl;
-    [SerializeField] private EdgeCollider2D ecr;
-    [SerializeField] private LineRenderer lrr;
+    [SerializeField] private EdgeCollider2D leftCol;
+    [SerializeField] private LineRenderer leftRenderer;
+    [SerializeField] private EdgeCollider2D rightCol;
+    [SerializeField] private LineRenderer rightRenderer;
 
     [SerializeField] private int edgeCount;
 
@@ -31,10 +31,10 @@ public class RiverSection : MonoBehaviour
     {
         left = CreateCurve(sl, sr, el, er);
         right = CreateCurve(sr, sl, er, el);
-        AdjustCollider(left, ecl);
-        AdjustCollider(right, ecr);
-        RenderLine(left, lrl);
-        RenderLine(right, lrr);
+        AdjustCollider(left, leftCol);
+        AdjustCollider(right, rightCol);
+        RenderLine(left, leftRenderer);
+        RenderLine(right, rightRenderer);
     }
 
     private IBazierCurve CreateCurve(Vector2 s1, Vector2 s2, Vector2 e1,

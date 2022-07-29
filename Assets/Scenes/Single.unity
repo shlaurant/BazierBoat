@@ -387,10 +387,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e16255108e462c8afd4cd8a0c26a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ecl: {fileID: 710845940}
-  lrl: {fileID: 710845939}
-  ecr: {fileID: 169724781}
-  lrr: {fileID: 169724782}
+  leftCol: {fileID: 710845940}
+  leftRenderer: {fileID: 710845939}
+  rightCol: {fileID: 169724781}
+  rightRenderer: {fileID: 169724782}
   edgeCount: 10
   doInit: 1
   sl: {x: 0, y: 0}
