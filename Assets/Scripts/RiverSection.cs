@@ -4,7 +4,9 @@ using UnityEngine;
 public class RiverSection : MonoBehaviour
 {
     [SerializeField] private EdgeCollider2D ecl;
+    [SerializeField] private LineRenderer lrl;
     [SerializeField] private EdgeCollider2D ecr;
+    [SerializeField] private LineRenderer lrr;
 
     [SerializeField] private int edgeCount;
 
@@ -31,6 +33,8 @@ public class RiverSection : MonoBehaviour
         right = CreateCurve(sr, sl, er, el);
         AdjustCollider(left, ecl);
         AdjustCollider(right, ecr);
+        RenderLine(left, lrl);
+        RenderLine(right, lrr);
     }
 
     private IBazierCurve CreateCurve(Vector2 s1, Vector2 s2, Vector2 e1,
@@ -59,5 +63,21 @@ public class RiverSection : MonoBehaviour
         }
         
         col.points = ret;
+    }
+
+    private void RenderLine(IBazierCurve curve, LineRenderer renderer)
+    {
+        var ret = new Vector3[edgeCount + 1];
+        
+        ret[0] = Util.Vector3(curve.BasePoints()[0]);
+        ret[edgeCount] = Util.Vector3(curve.BasePoints()[1]);
+        
+        for (var i = 1; i < edgeCount; ++i)
+        {
+            ret[i] = Util.Vector3(curve.Point((float)i / edgeCount));
+        }
+
+        renderer.positionCount = ret.Length;
+        renderer.SetPositions(ret);
     }
 }
