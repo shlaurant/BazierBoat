@@ -4,8 +4,6 @@ namespace Math2D
 {
     public class Line
     {
-        private const float Diff = 1e-6f;
-
         public readonly Point S;
         public readonly Point D;
 
@@ -22,7 +20,7 @@ namespace Math2D
 
         public Point Intersection(Line other)
         {
-            if (Util.IsEqual(D.Dot(other.D), D.SquaredLength(), Diff))
+            if (Util.IsEqual(D.Dot(other.D), D.SquaredLength()))
             {
                 throw new InvalidOperationException(
                     $"Line {this} and {other} is too parallel to compute");
