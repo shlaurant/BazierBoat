@@ -81,9 +81,7 @@ public class River : MonoBehaviour
             math.sin(curRot + Right));
         var dirB = new Vector2(math.cos(curRot - rot + Right),
             math.sin(curRot - rot + Right));
-
-        Debug.Log($"{rot}, {dirL}, {dirA}, {dirB}");
-
+        
         var rndV = Random.Range(minInterval, maxInterval) * dirA +
                    Random.Range(minInterval, maxInterval) * dirB;
 

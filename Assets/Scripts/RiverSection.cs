@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Math2D;
 using UnityEngine;
@@ -12,30 +13,65 @@ public class RiverSection : MonoBehaviour
     [SerializeField] private LineRenderer leftRenderer;
     [SerializeField] private EdgeCollider2D rightCol;
     [SerializeField] private LineRenderer rightRenderer;
+    [SerializeField] private EdgeCollider2D startCol;
+    [SerializeField] private EdgeCollider2D endCol;
 
     [SerializeField] private int edgeCount;
     [SerializeField] private float force;
 
     private IBazierCurve left;
     private IBazierCurve right;
+    private List<Rigidbody2D> bodies = new List<Rigidbody2D>();
+
+    private void FixedUpdate()
+    {
+        foreach (var body in bodies)
+        {
+            AddForce(body);
+        }
+    }
+
+    public void AddBody(Rigidbody2D body)
+    {
+        bodies.Add(body);
+    }
+
+    public void RemoveBody(Rigidbody2D body)
+    {
+        bodies.Remove(body);
+    }
 
     public void GenerateCurve(Vector2 sl, Vector2 sr, Vector2 el, Vector2 er)
     {
         left = CreateCurve(sl, sr, el, er);
         right = CreateCurve(sr, sl, er, el);
+        SetStartEnd(sl, sr, el, er);
         AdjustCollider(left, leftCol);
         AdjustCollider(right, rightCol);
         RenderLine(left, leftRenderer);
         RenderLine(right, rightRenderer);
     }
 
-    public void AddForce(Rigidbody2D body)
+    private void SetStartEnd(Vector2 sl, Vector2 sr, Vector2 el, Vector2 er)
+    {
+        startCol.SetPoints(new List<Vector2> { sl, sr });
+        endCol.SetPoints(new List<Vector2> { el, er });
+    }
+
+    private void AddForce(Rigidbody2D body)
     {
         var pos = transform.InverseTransformPoint(body.transform.position);
         var bodyPoint = new Point(pos.x, pos.y);
         if (IsInSection(bodyPoint))
         {
-            AddForce(body, SubSectionIndex(bodyPoint));
+            try
+            {
+                AddForce(body, SubSectionIndex(bodyPoint));
+            }
+            catch (ArgumentException e)
+            {
+                //Do nothing
+            }
         }
     }
 

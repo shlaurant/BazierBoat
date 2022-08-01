@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -333,9 +333,9 @@ MonoBehaviour:
   - {fileID: 414825138}
   - {fileID: 791802319}
   - {fileID: 1539016118}
-  width: 2
-  minInterval: 1
-  maxInterval: 5
+  width: 4
+  minInterval: 2
+  maxInterval: 12
 --- !u!1001 &640182896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 1733707347}
   - component: {fileID: 1733707348}
   - component: {fileID: 1733707349}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
