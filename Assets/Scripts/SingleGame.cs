@@ -32,6 +32,7 @@ public class SingleGame : MonoBehaviour
         river.Init();
         river.AddBoat(boat, 0);
         hasStarted = true;
+        boat.Init();
     }
 
     public void GameOver()
