@@ -7,6 +7,9 @@ public class SingleGame : MonoBehaviour
     [SerializeField] private GameObject gameOver;
 
     private bool hasStarted;
+    private float timeElapsed;
+
+    public float TimeElapsed => timeElapsed;
 
     private void Start()
     {
@@ -27,19 +30,26 @@ public class SingleGame : MonoBehaviour
             {
                 boat.RowLeft();
             }
+
+            timeElapsed += Time.deltaTime;
         }
     }
 
     public void StartGame()
     {
+        Time.timeScale = 1f;
+        
         river.Init();
         river.AddBoat(boat, 0);
-        hasStarted = true;
         boat.Init();
+        timeElapsed = 0;
+        hasStarted = true;
     }
 
     public void GameOver()
     {
+        Time.timeScale = 0f;
+        
         gameOver.SetActive(true);
         hasStarted = false;
     }

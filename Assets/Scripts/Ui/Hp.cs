@@ -8,7 +8,7 @@ namespace Ui
         [SerializeField] private Boat boat;
         [SerializeField] private Text text;
 
-        private void Start()
+        private void Awake()
         {
             boat.OnHpChange -= UpdateHp;
             boat.OnHpChange += UpdateHp;
