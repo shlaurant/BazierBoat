@@ -4,11 +4,14 @@ public class SingleGame : MonoBehaviour
 {
     [SerializeField] private River river;
     [SerializeField] private Boat boat;
+    [SerializeField] private GameObject gameOver;
 
-    private bool hasStarted = false;
+    private bool hasStarted;
 
     private void Start()
     {
+        boat.OnHpChange -= CheckIfZero;
+        boat.OnHpChange += CheckIfZero;
         StartGame();
     }
 
@@ -37,6 +40,8 @@ public class SingleGame : MonoBehaviour
 
     public void GameOver()
     {
+        gameOver.SetActive(true);
+        hasStarted = false;
     }
 
     public void PauseGame()
@@ -47,5 +52,13 @@ public class SingleGame : MonoBehaviour
     public void PlayGame()
     {
         Time.timeScale = 1f;
+    }
+
+    private void CheckIfZero(int hp)
+    {
+        if (hp <= 0)
+        {
+            GameOver();
+        }
     }
 }

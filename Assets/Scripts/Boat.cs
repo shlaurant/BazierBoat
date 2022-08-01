@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,13 +31,21 @@ public class Boat : MonoBehaviour
     public void Init()
     {
         transform.position = initPos;
+        transform.rotation = quaternion.identity;
+
         curHp = hp;
         OnHpChange.Invoke(curHp);
+        foreach (var body in bodies)
+        {
+            body.velocity = Vector2.zero;
+            body.angularVelocity = 0f;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         curHp -= (int)math.round(bodies[0].velocity.magnitude * dmgMult);
+        curHp = Math.Max(curHp, 0);
         OnHpChange.Invoke(curHp);
     }
 
