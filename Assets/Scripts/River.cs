@@ -19,11 +19,6 @@ public class River : MonoBehaviour
 
     private float curRot;
 
-    private void Start()
-    {
-        Init();
-    }
-
     public void Init()
     {
         foreach (var section in sections)
@@ -42,6 +37,14 @@ public class River : MonoBehaviour
             NextRandomLine();
             section.gameObject.SetActive(true);
             section.GenerateCurve(oriL, oriR, lastL, lastR);
+        }
+    }
+
+    public void AddBoat(Boat boat, int index)
+    {
+        foreach (var body in boat.BodiesToAdd())
+        {
+            sections[index].AddBody(body);
         }
     }
 
@@ -81,7 +84,7 @@ public class River : MonoBehaviour
             math.sin(curRot + Right));
         var dirB = new Vector2(math.cos(curRot - rot + Right),
             math.sin(curRot - rot + Right));
-        
+
         var rndV = Random.Range(minInterval, maxInterval) * dirA +
                    Random.Range(minInterval, maxInterval) * dirB;
 
