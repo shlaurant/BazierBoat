@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -20,6 +21,17 @@ namespace Water
         private Vector2 lastR;
 
         private float curRot;
+        private int toRemove;
+        private int lastExit; //section index where the boat exited last.
+
+        private void Start()
+        {
+            foreach (var section in sections)
+            {
+                section.OnBoatExit -= OnBoatExit;
+                section.OnBoatExit += OnBoatExit;
+            }
+        }
 
         public void Init()
         {
@@ -31,14 +43,12 @@ namespace Water
             lastL = new Vector2(-width / 2, 0f);
             lastR = new Vector2(width / 2, 0f);
             curRot = 0f;
+            toRemove = 0;
+            lastExit = 0;
 
             foreach (var section in sections)
             {
-                var oriL = lastL;
-                var oriR = lastR;
-                NextRandomLine();
-                section.gameObject.SetActive(true);
-                section.GenerateCurve(oriL, oriR, lastL, lastR);
+                GenerateRandomSection(section);
             }
         }
 
@@ -48,6 +58,25 @@ namespace Water
             {
                 sections[index].AddBody(body);
             }
+        }
+
+        public void OnBoatExit(RiverSection section)
+        {
+            lastExit = sections.FindIndex(section.Equals);
+            if (Math.Abs(toRemove - lastExit) > 1)
+            {
+                GenerateRandomSection(sections[toRemove]);
+                toRemove = (toRemove + 1) % sections.Count;
+            }
+        }
+
+        private void GenerateRandomSection(RiverSection section)
+        {
+            var oriL = lastL;
+            var oriR = lastR;
+            NextRandomLine();
+            section.gameObject.SetActive(true);
+            section.GenerateCurve(oriL, oriR, lastL, lastR);
         }
 
         private void NextRandomLine()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Math2D;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Water
 {
@@ -16,6 +17,8 @@ namespace Water
 
         [SerializeField] private int edgeCount;
         [SerializeField] private float force;
+
+        public UnityAction<RiverSection> OnBoatExit;
 
         private IBazierCurve left;
         private IBazierCurve right;
@@ -37,6 +40,10 @@ namespace Water
         public void RemoveBody(Rigidbody2D body)
         {
             bodies.Remove(body);
+            if (body.GetComponent<Boat>() != null)
+            {
+                OnBoatExit.Invoke(this);
+            }
         }
 
         public void GenerateCurve(Vector2 sl, Vector2 sr, Vector2 el,
