@@ -2521,7 +2521,7 @@ MonoBehaviour:
   - {fileID: 1733707349}
   - {fileID: 1480463982}
   initPos: {x: 0, y: 1, z: 0}
-  hp: 10
+  hp: 100
   dmgMult: 1
 --- !u!255 &1733707351
 FixedJoint2D:
