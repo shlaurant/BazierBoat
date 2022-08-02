@@ -301,8 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997ad20bfdd545e184d127158b82dce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 200
+  force: 0
   torque: -50
+  interval: 0.12
   body: {fileID: 1733707349}
   renderer: {fileID: 8241249}
 --- !u!1 &170537853
@@ -2648,7 +2649,7 @@ MonoBehaviour:
   - {fileID: 1733707349}
   - {fileID: 1480463982}
   initPos: {x: 0, y: 1, z: 0}
-  hp: 100000
+  hp: 100
   dmgMult: 1
 --- !u!255 &1733707351
 FixedJoint2D:
@@ -2780,8 +2781,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997ad20bfdd545e184d127158b82dce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 200
+  force: 0
   torque: 50
+  interval: 0.12
   body: {fileID: 1733707349}
   renderer: {fileID: 1990912418}
 --- !u!212 &1990912418

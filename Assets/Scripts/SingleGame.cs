@@ -19,15 +19,15 @@ public class SingleGame : MonoBehaviour
         StartGame();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (hasStarted)
         {
-            if (Input.GetButtonDown("Right"))
+            if (Input.GetButton("Right"))
             {
                 boat.RowRight();
             }
-            else if (Input.GetButtonDown("Left"))
+            else if (Input.GetButton("Left"))
             {
                 boat.RowLeft();
             }
