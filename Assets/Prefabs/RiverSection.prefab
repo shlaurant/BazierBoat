@@ -339,7 +339,7 @@ MonoBehaviour:
   startCol: {fileID: 4717056131540428068}
   endCol: {fileID: 6825046372565110984}
   edgeCount: 20
-  force: 150
+  force: 60
 --- !u!114 &4843143618656779310
 MonoBehaviour:
   m_ObjectHideFlags: 0
