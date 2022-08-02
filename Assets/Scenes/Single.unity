@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 26
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3150015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.17, z: -10}
+  m_LocalPosition: {x: 0, y: 22.68, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1733707346}
@@ -216,7 +216,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8241248}
   - component: {fileID: 8241249}
-  - component: {fileID: 8241250}
   - component: {fileID: 8241251}
   m_Layer: 7
   m_Name: LeftOar
@@ -224,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8241248
 Transform:
   m_ObjectHideFlags: 0
@@ -290,27 +289,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &8241250
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8241247}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &8241251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,8 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997ad20bfdd545e184d127158b82dce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0.5
-  body: {fileID: 8241250}
+  force: 200
+  torque: -50
+  body: {fileID: 1733707349}
   renderer: {fileID: 8241249}
 --- !u!1 &170537853
 GameObject:
@@ -1030,9 +1009,9 @@ MonoBehaviour:
   - {fileID: 1539016118}
   - {fileID: 912335559}
   - {fileID: 511143022}
-  width: 6
-  minInterval: 3
-  maxInterval: 12
+  width: 16
+  minInterval: 8
+  maxInterval: 32
 --- !u!1001 &640182896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2231,10 +2210,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
-  m_LinearDrag: 0.1
-  m_AngularDrag: 0.1
-  m_GravityScale: 1
+  m_Mass: 5
+  m_LinearDrag: 2
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2538,8 +2517,6 @@ GameObject:
   - component: {fileID: 1733707349}
   - component: {fileID: 1733707348}
   - component: {fileID: 1733707351}
-  - component: {fileID: 1733707353}
-  - component: {fileID: 1733707352}
   m_Layer: 7
   m_Name: Boat
   m_TagString: Untagged
@@ -2644,10 +2621,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 1
-  m_GravityScale: 1
+  m_Mass: 10
+  m_LinearDrag: 2
+  m_AngularDrag: 4
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2689,42 +2666,6 @@ FixedJoint2D:
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: -0.57500005}
-  m_DampingRatio: 0
-  m_Frequency: 0
---- !u!255 &1733707352
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1733707345}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 1990912417}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.3, y: 0}
-  m_DampingRatio: 0
-  m_Frequency: 0
---- !u!255 &1733707353
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1733707345}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 8241250}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.3, y: 0}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1001 &1928431670
@@ -2805,7 +2746,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1990912415}
   - component: {fileID: 1990912418}
-  - component: {fileID: 1990912417}
   - component: {fileID: 1990912416}
   m_Layer: 7
   m_Name: RightOar
@@ -2813,7 +2753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1990912415
 Transform:
   m_ObjectHideFlags: 0
@@ -2840,30 +2780,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997ad20bfdd545e184d127158b82dce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0.5
-  body: {fileID: 1990912417}
+  force: 200
+  torque: 50
+  body: {fileID: 1733707349}
   renderer: {fileID: 1990912418}
---- !u!50 &1990912417
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990912414}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &1990912418
 SpriteRenderer:
   m_ObjectHideFlags: 0

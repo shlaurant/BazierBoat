@@ -35,6 +35,10 @@ namespace Water
         public void AddBody(Rigidbody2D body)
         {
             bodies.Add(body);
+            if (body.GetComponent<Boat>() != null)
+            {
+                Debug.Log("Boat added", gameObject);
+            }
         }
 
         public void RemoveBody(Rigidbody2D body)
@@ -42,6 +46,7 @@ namespace Water
             bodies.Remove(body);
             if (body.GetComponent<Boat>() != null)
             {
+                Debug.Log("Boat removed", gameObject);
                 OnBoatExit.Invoke(this);
             }
         }
