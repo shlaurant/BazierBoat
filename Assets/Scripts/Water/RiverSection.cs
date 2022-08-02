@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Math2D;
 using UnityEngine;
 
@@ -82,10 +81,8 @@ namespace Water
 
         private int SubSectionIndex(Point p)
         {
-            var lPoints = DiscreteCurvePoints(left).ToList()
-                .ConvertAll(Util.Point);
-            var rPoints =
-                DiscreteCurvePoints(right).ToList().ConvertAll(Util.Point);
+            var lPoints = left.DiscreteCurvePoints(edgeCount);
+            var rPoints = right.DiscreteCurvePoints(edgeCount);
             for (var i = 0; i < edgeCount; ++i)
             {
                 if (IsInSection(p, lPoints[i], rPoints[i],
@@ -125,17 +122,8 @@ namespace Water
 
         private Vector2[] DiscreteCurvePoints(IBazierCurve curve)
         {
-            var ret = new Vector2[edgeCount + 1];
-
-            ret[0] = Util.Vector2(curve.BasePoints()[0]);
-            ret[edgeCount] = Util.Vector2(curve.BasePoints()[1]);
-
-            for (var i = 1; i < edgeCount; ++i)
-            {
-                ret[i] = Util.Vector2(curve.Point((float)i / edgeCount));
-            }
-
-            return ret;
+            return curve.DiscreteCurvePoints(edgeCount).ConvertAll(Util.Vector2)
+                .ToArray();
         }
     }
 }

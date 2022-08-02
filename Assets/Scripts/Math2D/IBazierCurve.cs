@@ -12,5 +12,7 @@ namespace Math2D
         Point Point(float t);
 
         IList<Point> BasePoints();
+
+        List<Point> DiscreteCurvePoints(int edgeCount);
     }
 }

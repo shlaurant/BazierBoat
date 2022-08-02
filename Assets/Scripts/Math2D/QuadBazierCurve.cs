@@ -37,6 +37,20 @@ namespace Math2D
             return ret;
         }
 
+        public List<Point> DiscreteCurvePoints(int edgeCount)
+        {
+            var ret = new Point[edgeCount + 1];
+            ret[0] = BasePoints()[0];
+            ret[edgeCount] = BasePoints()[1];
+
+            for (var i = 1; i < edgeCount; ++i)
+            {
+                ret[i] = Point((float)i / edgeCount);
+            }
+
+            return new List<Point>(ret);
+        }
+
         public override string ToString()
         {
             return $"{nameof(a)}: {a}, {nameof(b)}: {b}, {nameof(c)}: {c}";

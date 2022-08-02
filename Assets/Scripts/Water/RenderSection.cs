@@ -18,14 +18,16 @@ namespace Water
             RenderLine(right, rightRenderer, edgeCount);
         }
 
-        private void AdjustCollider(IBazierCurve curve, EdgeCollider2D col, int edgeCount)
+        private void AdjustCollider(IBazierCurve curve, EdgeCollider2D col,
+            int edgeCount)
         {
             var ret = DiscreteCurvePoints(curve, edgeCount);
 
             col.points = ret;
         }
 
-        private void RenderLine(IBazierCurve curve, LineRenderer renderer, int edgeCount)
+        private void RenderLine(IBazierCurve curve, LineRenderer renderer,
+            int edgeCount)
         {
             var ret = new Vector3[edgeCount + 1];
 
@@ -43,17 +45,8 @@ namespace Water
 
         private Vector2[] DiscreteCurvePoints(IBazierCurve curve, int edgeCount)
         {
-            var ret = new Vector2[edgeCount + 1];
-
-            ret[0] = Util.Vector2(curve.BasePoints()[0]);
-            ret[edgeCount] = Util.Vector2(curve.BasePoints()[1]);
-
-            for (var i = 1; i < edgeCount; ++i)
-            {
-                ret[i] = Util.Vector2(curve.Point((float)i / edgeCount));
-            }
-
-            return ret;
+            return curve.DiscreteCurvePoints(edgeCount).ConvertAll(Util.Vector2)
+                .ToArray();
         }
     }
 }
