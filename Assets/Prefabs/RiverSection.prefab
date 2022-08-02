@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3791356029167074436}
   - component: {fileID: 3791356029167074443}
+  - component: {fileID: 4843143618656779310}
   - component: {fileID: 3791356029167074437}
   m_Layer: 6
   m_Name: RiverSection
@@ -334,14 +335,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e16255108e462c8afd4cd8a0c26a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftCol: {fileID: 3791356029496082824}
-  leftRenderer: {fileID: 3791356029496082831}
-  rightCol: {fileID: 3791356028963335953}
-  rightRenderer: {fileID: 3791356028963335954}
+  renderSection: {fileID: 4843143618656779310}
   startCol: {fileID: 4717056131540428068}
   endCol: {fileID: 6825046372565110984}
   edgeCount: 20
   force: 5
+--- !u!114 &4843143618656779310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791356029167074442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44bcea7e031b47f2be7f456765a8c8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftCol: {fileID: 3791356029496082824}
+  rightCol: {fileID: 3791356028963335953}
+  leftRenderer: {fileID: 3791356029496082831}
+  rightRenderer: {fileID: 3791356028963335954}
 --- !u!114 &3791356029167074437
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,10 +11,7 @@ namespace Water
     /// </summary>
     public class RiverSection : MonoBehaviour
     {
-        [SerializeField] private EdgeCollider2D leftCol;
-        [SerializeField] private LineRenderer leftRenderer;
-        [SerializeField] private EdgeCollider2D rightCol;
-        [SerializeField] private LineRenderer rightRenderer;
+        [SerializeField] private RenderSection renderSection;
         [SerializeField] private EdgeCollider2D startCol;
         [SerializeField] private EdgeCollider2D endCol;
 
@@ -49,10 +46,7 @@ namespace Water
             left = CreateCurve(sl, sr, el, er);
             right = CreateCurve(sr, sl, er, el);
             SetStartEnd(sl, sr, el, er);
-            AdjustCollider(left, leftCol);
-            AdjustCollider(right, rightCol);
-            RenderLine(left, leftRenderer);
-            RenderLine(right, rightRenderer);
+            renderSection.Render(left, right, edgeCount);
         }
 
         private void SetStartEnd(Vector2 sl, Vector2 sr, Vector2 el, Vector2 er)
@@ -128,12 +122,6 @@ namespace Water
             return new Line(Util.Point(s), Util.Point(dir));
         }
 
-        private void AdjustCollider(IBazierCurve curve, EdgeCollider2D col)
-        {
-            var ret = DiscreteCurvePoints(curve);
-
-            col.points = ret;
-        }
 
         private Vector2[] DiscreteCurvePoints(IBazierCurve curve)
         {
@@ -148,22 +136,6 @@ namespace Water
             }
 
             return ret;
-        }
-
-        private void RenderLine(IBazierCurve curve, LineRenderer renderer)
-        {
-            var ret = new Vector3[edgeCount + 1];
-
-            ret[0] = Util.Vector3(curve.BasePoints()[0]);
-            ret[edgeCount] = Util.Vector3(curve.BasePoints()[1]);
-
-            for (var i = 1; i < edgeCount; ++i)
-            {
-                ret[i] = Util.Vector3(curve.Point((float)i / edgeCount));
-            }
-
-            renderer.positionCount = ret.Length;
-            renderer.SetPositions(ret);
         }
     }
 }
