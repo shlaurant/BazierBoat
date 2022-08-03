@@ -4,6 +4,7 @@ namespace Math2D
 {
     public static class Util
     {
+        public const float Inf = 1e10f;
         private const float DiffMin = 1e-6f;
 
         public static bool IsEqual(float a, float b)
@@ -28,6 +29,15 @@ namespace Math2D
             var val = (q.Y - p.Y) * (r.X - q.X) - (q.X - p.X) * (r.Y - q.Y);
             if (IsEqual(val, 0f)) return 0;
             return val > 0 ? 1 : 2;
+        }
+
+        /// <summary>
+        /// For collinear 3 points, determine whether q is in between q and r.
+        /// </summary>
+        public static bool OnSegment(Point p, Point q, Point r)
+        {
+            return q.X <= Math.Max(p.X, r.X) && q.X >= Math.Min(p.X, r.X) &&
+                   q.Y <= Math.Max(p.Y, r.Y) && q.Y >= Math.Min(p.Y, r.Y);
         }
     }
 }

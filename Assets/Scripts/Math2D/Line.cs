@@ -25,12 +25,31 @@ namespace Math2D
                 throw new InvalidOperationException(
                     $"Line {this} and {other} is too parallel to compute");
             }
-            else
+
+            Util.Cramer(D.X, -other.D.X, other.S.X - S.X, D.Y, -other.D.Y,
+                other.S.Y - S.Y, out var x, out var y);
+            return new Point(S.X + D.X * x, S.Y + D.Y * x);
+        }
+        
+        public bool DoIntersect(Line l2)
+        {
+            if (Util.Orientation(S, D, l2.S) !=
+                Util.Orientation(S, D, l2.D) &&
+                Util.Orientation(l2.S, l2.D, S) !=
+                Util.Orientation(l2.S, l2.D, D))
             {
-                Util.Cramer(D.X, -other.D.X, other.S.X - S.X, D.Y, -other.D.Y,
-                    other.S.Y - S.Y, out var x, out var y);
-                return new Point(S.X + D.X * x, S.Y + D.Y * x);
+                return true;
             }
+
+            if (Util.Orientation(S, D, l2.S) == 0 && Util.OnSegment(S, l2.S, D)) return true;
+            
+            if (Util.Orientation(S, D, l2.D) == 0 && Util.OnSegment(S, l2.D, D)) return true;
+            
+            if (Util.Orientation(l2.S, l2.D, S) == 0 && Util.OnSegment(l2.S, S, l2.D)) return true;
+            
+            if (Util.Orientation(l2.S, l2.D, D) == 0 && Util.OnSegment(l2.S, D, l2.D)) return true;
+
+            return false;
         }
 
         public override string ToString()

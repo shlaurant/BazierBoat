@@ -35,10 +35,6 @@ namespace Water
         public void AddBody(Rigidbody2D body)
         {
             bodies.Add(body);
-            if (body.GetComponent<Boat>() != null)
-            {
-                Debug.Log("Boat added", gameObject);
-            }
         }
 
         public void RemoveBody(Rigidbody2D body)
@@ -46,7 +42,6 @@ namespace Water
             bodies.Remove(body);
             if (body.GetComponent<Boat>() != null)
             {
-                Debug.Log("Boat removed", gameObject);
                 OnBoatExit.Invoke(this);
             }
         }
@@ -76,7 +71,7 @@ namespace Water
                 {
                     AddForce(body, SubSectionIndex(bodyPoint));
                 }
-                catch (ArgumentException e)
+                catch
                 {
                     //Do nothing
                 }
@@ -98,7 +93,10 @@ namespace Water
             for (var i = 0; i < edgeCount; ++i)
             {
                 if (IsInSection(p, lPoints[i], rPoints[i],
-                        lPoints[i + 1], rPoints[i + 1])) return i;
+                        lPoints[i + 1], rPoints[i + 1]))
+                {
+                    return i;
+                }
             }
 
             throw new ArgumentException($"{p} is not in {this}");
@@ -106,16 +104,22 @@ namespace Water
 
         private bool IsInSection(Point p)
         {
-            return IsInSection(p, left.BasePoints()[0], right.BasePoints()[0],
-                left.BasePoints()[1], right.BasePoints()[1]);
+            var lPoints = left.DiscreteCurvePoints(edgeCount);
+            var rPoints = right.DiscreteCurvePoints(edgeCount);
+
+            for (var i = 0; i < edgeCount; ++i)
+            {
+                if (IsInSection(p, lPoints[i], rPoints[i],
+                        lPoints[i + 1], rPoints[i + 1])) return true;
+            }
+
+            return false;
         }
 
         private bool IsInSection(Point p, Point s0, Point s1, Point e0,
             Point e1)
         {
-            var so = Math2D.Util.Orientation(s0, s1, p);
-            var eo = Math2D.Util.Orientation(e0, e1, p);
-            return so != eo && eo != 0;
+            return p.InPolygon(new List<Point> { s0, e0, e1, s1 });
         }
 
         private IBazierCurve CreateCurve(Vector2 s1, Vector2 s2, Vector2 e1,
