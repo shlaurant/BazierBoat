@@ -60,7 +60,7 @@ namespace Water
             }
         }
 
-        public void OnBoatExit(RiverSection section)
+        private void OnBoatExit(RiverSection section)
         {
             lastExit = sections.FindIndex(section.Equals);
             if (Math.Abs(toRemove - lastExit) > 1)

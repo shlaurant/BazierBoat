@@ -46,7 +46,7 @@ public class Boat : MonoBehaviour
     {
         curHp -= (int)math.round(bodies[0].velocity.magnitude * dmgMult);
         curHp = Math.Max(curHp, 0);
-        OnHpChange.Invoke(curHp);
+        OnHpChange?.Invoke(curHp);
     }
 
     public void RowLeft()
